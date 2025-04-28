@@ -1,11 +1,65 @@
-Escolha um tipo de imagem para segmentar por textura. Por exemplo, pode ser imagem médica, paisagem, urbana, equipamentos ou agrícola. Monte um conjunto de filtros de textura, ao menos coma as orientações horizontal, vertical, 45 e 135 graus, e circular, processe a imagem em 3 escalas.
-Você pode fazer os filtros em 3 escalas e aplicá-los nas imagens ou trabalhar com os filtros em uma escala e sucessivamente aplicar um filtro gaussiano e reduzir em seguida a imagem à metade em cada dimensão.
+# INFO7064 – Tópicos em Processamento de Imagens
 
-Construa vetores que descrevem cada região em termos de textura, sendo a média de cada janela (ver slides).
-Tente fazer algo que agrupe os semelhantes, por exemplo baseado na distância euclidiana N-dimensional.
-Mostre imagem com a categorização conforme grupso definidos.
-Não precisa ser genérico, é o primeiro trabalho. Basta funcionar para um conjunto de ao menos 16 imagens que você vai analisar.
-Use algoritmos clássicos, sem deep learning.
-Pode ser feito com 2 a 4 participantes por grupo. Se estiver fora desta faixa ok, mas recebe 25% de desconto na nota por participante excedente ou faltante.
-Pode ser em Python e OpenCV ou usar Colab. Pode ser em C ou C++ tb.
-Entrega: relatorio formato artigo mostrando o que vc fez, algo simples. Deve conter link clicável para o git da tarefa.
+## Descrição da Tarefa
+
+Neste trabalho, você deverá implementar uma pipeline de segmentação de imagens por textura, utilizando algoritmos clássicos (sem deep learning).  
+O objetivo é explorar filtros de textura para agrupar regiões semelhantes em um conjunto de imagens de um mesmo domínio (médico, paisagem, urbano, equipamentos, agrícola etc.).
+
+---
+
+## Requisitos Gerais
+
+1. **Seleção de imagens**  
+   - Escolha **ao menos 16 imagens** de um mesmo tipo (por exemplo, imagens médicas, paisagens, cenários urbanos, equipamentos industriais, áreas agrícolas etc.).
+
+2. **Filtros de textura**  
+   - Defina um conjunto de filtros de textura em **pelo menos 3 escalas**.  
+     - Orientações obrigatórias:  
+       - Horizontal  
+       - Vertical  
+       - Diagonal a 45°  
+       - Diagonal a 135°  
+       - Circular  
+   - Duas estratégias sugeridas:  
+     - Criar filtros em 3 escalas distintas e aplicá-los diretamente.  
+     - Trabalhar com filtros em escala única e, a cada iteração, aplicar um filtro gaussiano + reduzir a imagem em metade de cada dimensão.
+
+3. **Extração de descritores**  
+   - Divida cada imagem em janelas (patches) e, para cada janela, compute estatísticas de textura (por exemplo, média dos valores de resposta de cada filtro).
+
+4. **Agrupamento (clustering)**  
+   - Utilize um algoritmo clássico de agrupamento (por exemplo, K-Means) baseado em distância euclidiana em N-dimensões para agrupar as janelas semelhantes.
+
+5. **Visualização dos resultados**  
+   - Gere imagens que mostrem a segmentação, colorindo cada região de acordo com o cluster ao qual pertence.
+
+---
+
+## Ferramentas e Linguagens Permitidas
+
+- **Python + OpenCV** (pode usar Google Colab)  
+- **C ou C++** (bibliotecas à escolha)  
+
+---
+
+## Trabalho em Grupo
+
+- **2 a 4 participantes** por grupo.  
+- **Atenção:** grupos fora desse intervalo sofrerão desconto de 25% na nota por participante excedente ou faltante.
+
+---
+
+## Entrega
+
+- **Relatório** no formato de artigo científico (PDF), contendo:  
+  - Introdução e motivação  
+  - Descrição da metodologia (filtros, escalas, extração de descritores, clustering)  
+  - Experimentos e resultados (com figuras das segmentações)  
+  - Conclusões e possíveis extensões  
+  - **Link clicável para o repositório Git** com o código-fonte e instruções de uso.
+
+---
+
+
+
+
