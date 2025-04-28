@@ -244,6 +244,55 @@ A comparação entre as duas abordagens multi-escala implementadas mostrou que:
 // TODO: Revisar texto a seguir
 A análise quantitativa da correlação entre os padrões de cluster e o diagnóstico revelou uma associação significativa entre determinados padrões texturais e a presença de pneumonia. Os clusters associados a regiões com alta resposta aos filtros de Gabor em orientações diagonais (45° e 135°) mostraram-se positivamente correlacionados com o diagnóstico de pneumonia, com uma diferença média de frequência de 0,18 entre casos normais e casos de pneumonia.
 
+\subsection{Avaliação Quantitativa}
+Nesta subseção apresentamos a avaliação quantitativa do classificador baseado em K-Means global, utilizando a matriz de confusão e as principais métricas de desempenho.
+
+\begin{table}[h]
+  \centering
+  \caption{Matriz de Confusão no conjunto de teste}
+  \label{tab:confusion_matrix}
+  \begin{tabular}{lcc}
+    \toprule
+                   & \textbf{Previsto Normal} & \textbf{Previsto Pneumonia} \\
+    \midrule
+    \textbf{Real Normal}     & 74 (VN)   & 9  (FP)  \\
+    \textbf{Real Pneumonia}  & 30 (FN)   & 87 (VP)  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% Relembrar definições brevemente
+Onde:
+\begin{itemize}
+  \item VN = Verdadeiros Negativos (True Negatives)
+  \item FP = Falsos Positivos (False Positives)
+  \item FN = Falsos Negativos (False Negatives)
+  \item VP = Verdadeiros Positivos (True Positives)
+\end{itemize}
+
+A partir da Tabela~\ref{tab:confusion_matrix}, calculamos:
+
+\[
+\text{Acurácia} = \frac{\text{VP} + \text{VN}}{\text{VP} + \text{VN} + \text{FP} + \text{FN}}
+= \frac{87 + 74}{87 + 74 + 9 + 30} \times 100\% = 80{,}50\%
+\]
+
+Além da acurácia, outras métricas podem ser obtidas, por exemplo:
+\[
+\text{Precisão (Precision)} = \frac{\text{VP}}{\text{VP} + \text{FP}}
+= \frac{87}{87 + 9} \approx 90{,}58\%
+\]
+\[
+\text{Sensibilidade (Recall)} = \frac{\text{VP}}{\text{VP} + \text{FN}}
+= \frac{87}{87 + 30} \approx 74{,}35\%
+\]
+\[
+\text{Especificidade} = \frac{\text{VN}}{\text{VN} + \text{FP}}
+= \frac{74}{74 + 9} \approx 89{,}16\%
+\]
+
+Esses resultados mostram que o modelo apresenta boa precisão na detecção de pneumonia, embora a sensibilidade ainda possa ser melhorada em trabalhos futuros.
+
 \subsection{Robustez e Limitações}
 
 // TODO: Adicionar resultados de robustez e limitações dos filtros utilizados
