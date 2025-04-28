@@ -1,17 +1,17 @@
 # Fdb version 4
-["bibtex main"] 1745846501.66952 "main.aux" "main.bbl" "main" 1745847057.15019 0
+["bibtex main"] 1745880228.09119 "main.aux" "main.bbl" "main" 1745880230.25089 0
   "./ACM-Reference-Format.bst" 1745800814.93282 90332 18dc4e5c9b5c2ddd337e9f97727d04f1 ""
   "./references.bib" 1745800814.9423 797 319e5817e00f1a5c6a9bf4b40bc29db9 ""
-  "main.aux" 1745847056.93747 5992 3c6248d3198ae8b6b0e8a0fd714564b8 "pdflatex"
+  "main.aux" 1745880230.01391 6628 7ceb9587748b48269d8220d8bf9b5e4e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1745847056.02768 "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" "main.pdf" "main" 1745847057.15028 0
-  "../images/cluster_distribution.png" 1745800814.94293 135198 c916d5f82122a728652af007832be86a ""
-  "../images/filtros_normal.png" 1745800814.94454 399088 63dbd8a09d47a7647c844cdbb61a793d ""
-  "../images/filtros_pneumonia.png" 1745800814.94597 395739 1019d06bfdf8484accbb40a3f0e72710 ""
-  "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" 1745847055.9108 22805 415088b77911e8b556d27c61fda5291d ""
+["pdflatex"] 1745880228.14849 "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" "main.pdf" "main" 1745880230.25106 0
+  "../images/global_0_pneu.png" 1745788258.06999 230899 35f7efe2d01bdb9d5c89c88ad34b6ccb ""
+  "../images/global_1_norm.png" 1745788259.52986 233703 c7b7a1b9c346f9b8b0a187eada231bf9 ""
+  "../images/global_avg_dist.png" 1745788264.33988 82963 5a5d499ac3591d648d8a1239a061e240 ""
+  "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" 1745880225.8935 22775 5faf77fb04e6247cf2a900b2d3fd2090 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1741388039 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1741388039 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1741388039 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
@@ -32,6 +32,8 @@
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinBiolinumT-tlf-t1.tfm" 1741388039 19548 768852037f39958c435d71846b8877ea ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinBiolinumTB-tlf-t1--base.tfm" 1741388039 1768 23aace73e6def3193d6e0453af90487b ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinBiolinumTB-tlf-t1.tfm" 1741388039 19416 aedd2db224ad278ddf2c411f52d86014 ""
+  "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinBiolinumTI-tlf-t1--base.tfm" 1741388039 1988 34f48347175f643e8b2134cd8f7a90a3 ""
+  "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinBiolinumTI-tlf-t1.tfm" 1741388039 20012 beadc3a52552515981c78cd731a40afe ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm" 1741388039 1396 948c4e08512f70c39fade285ab551221 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1.tfm" 1741388039 5612 e018d44ec5e7a3b3574b3a9598e8e279 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm" 1741388039 1740 2943dd2ba1dcd3849599663c1d2693ef ""
@@ -68,6 +70,7 @@
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/newtx/txsys.tfm" 1741388039 1656 68b5079c64f1cefe2cf442b6a60cf2fd ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb" 1741388039 548786 1e51d517556d29f2841d57da58668a69 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb" 1741388039 687959 b99c9f5a9b28f3dba077d1c078bceb3f ""
+  "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb" 1741388039 879384 e498f90c951041b56f91c0ffbf77a9d2 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb" 1741388039 614791 ea39341e4db76f25cb20c361802d3cd5 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb" 1741388039 538965 19c5c8b7f952ac97afb8565e9c21a82d ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb" 1741388039 490980 e27f1e217a0902faea22205f197918d4 ""
@@ -79,6 +82,7 @@
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb" 1741388039 45985 fd5f8adcc4f0e93e9a95469e12126723 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/vf/public/libertine/LinBiolinumT-tlf-t1.vf" 1741388039 1728 e76e04a950024a95b620698b679c9810 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/vf/public/libertine/LinBiolinumTB-tlf-t1.vf" 1741388039 1728 4ae633ddccb76ba8d0a0906a5e2e8fdf ""
+  "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/vf/public/libertine/LinBiolinumTI-tlf-t1.vf" 1741388039 1728 0f47a4d345513e0ad2e29d47540d4f2a ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf" 1741388039 968 b4daf26f130460f16d670da7f3f6963f ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf" 1741388039 1728 b078a050f24d7649619baa987d7216d8 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ts1.vf" 1741388039 640 f2633b196ddbd644937d19e300a5024e ""
@@ -210,10 +214,10 @@
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346141 1288109d02d1c772df65535881471649 ""
   "acmart.cls" 1745800814.93326 119402 7d3e43c6942ada4777b1e2cee00dd44b ""
-  "main.aux" 1745847056.93747 5992 3c6248d3198ae8b6b0e8a0fd714564b8 "pdflatex"
-  "main.bbl" 1745846501.72234 2712 3575f116b804f3021141b27675726b14 "bibtex main"
-  "main.out" 1745847056.93802 5857 cd662e710bb8d1f7593b0978e75b694c "pdflatex"
-  "main.tex" 1745847055.9108 22805 415088b77911e8b556d27c61fda5291d ""
+  "main.aux" 1745880230.01391 6628 7ceb9587748b48269d8220d8bf9b5e4e "pdflatex"
+  "main.bbl" 1745880228.14595 2712 3575f116b804f3021141b27675726b14 "bibtex main"
+  "main.out" 1745880230.01476 5861 1bcbdfa9ad50107a1db778ca6377e2d2 "pdflatex"
+  "main.tex" 1745880225.8935 22775 5faf77fb04e6247cf2a900b2d3fd2090 ""
   (generated)
   "main.aux"
   "main.log"

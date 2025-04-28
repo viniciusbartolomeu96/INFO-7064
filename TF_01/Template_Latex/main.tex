@@ -45,6 +45,7 @@
   Esse trabalho investiga o impacto de diferentes configurações de filtros de textura para a classificação de imagens médicas, com foco no uso de métodos clássicos de visão computacional.
   A pesquisa analisa o dataset público \textit{medmnist}, com foco na base de dados \textit{PneumoniaMNIST} que contém imagens de raio-X de tórax, e avalia o desempenho de diferentes filtros de textura na extração de características relevantes para a classificação de imagens.
   O estudo utiliza uma abordagem de aprendizado de máquina, aplicando técnicas de pré-processamento e extração de características, seguido por algoritmos de classificação.
+  O repositório com o código-fonte completo está disponível em \url{https://github.com/viniciusbartolomeu96/INFO-7064}.
 \end{abstract}
 
 \keywords{Visão Computacional, Extração de Características, Classificação, Machine Learning}
@@ -182,30 +183,24 @@ Esta combinação de filtros permite capturar uma ampla gama de características
 
 \subsection{Extração de Características}
 
-Para a extração de características, dividimos cada imagem em janelas não sobrepostas de tamanho 5×5 pixels. Para cada janela, calculamos a média da resposta de cada filtro, gerando um vetor de características de dimensão igual ao número de filtros (15 no total).
+Para a extração de características, dividimos cada imagem em janelas não sobrepostas de tamanho 16×16 pixels. Para cada janela, calculamos a média da resposta de cada filtro, gerando um vetor de características de dimensão igual ao número de filtros (4 no total).
 
 Esta abordagem baseada em janelas permite uma análise local das texturas, preservando informações espaciais importantes para a classificação, ao mesmo tempo em que reduz a dimensionalidade dos dados e aumenta a robustez a ruídos.
 
 \subsection{Segmentação por Textura}
 
-Utilizamos o algoritmo K-means para agrupar regiões da imagem com base nas características extraídas. Definimos o número de clusters como 4, representando diferentes padrões texturais presentes nas imagens. Para garantir a robustez do agrupamento, as características foram padronizadas antes da aplicação do K-means, usando a técnica de padronização Z-score:
-
-\[
-z = \frac{x - \mu}{\sigma}
-\]
-
-onde \(x\) é o valor original, \(\mu\) é a média e \(\sigma\) é o desvio padrão.
+Utilizamos o algoritmo K-means para agrupar regiões da imagem com base nas características extraídas. Definimos o número de clusters como 2, representando diferentes padrões texturais presentes nas imagens.
 
 \subsection{Análise Multi-escala}
 
-Implementamos duas abordagens para análise multi-escala:
+Implementamos a abordagem de Filtros em múltiplas escalas, aplicando diretamente filtros com diferentes parâmetros de escala na imagem original.
 
-\begin{itemize}
-  \item \textbf{Filtros em múltiplas escalas:} Aplicação direta de filtros com diferentes parâmetros de escala na imagem original.
-  \item \textbf{Pirâmide de imagens:} Aplicação de filtros em versões reduzidas da imagem, capturando características em diferentes níveis de detalhe.
-\end{itemize}
-
-A abordagem de pirâmide de imagens consiste em aplicar filtros de Gabor e LoG à imagem original e, em seguida, reduzir a resolução da imagem (downsampling) após aplicação de um filtro gaussiano para evitar aliasing. Este processo é repetido para três níveis de resolução, permitindo a captura de características em diferentes escalas.
+\subsection{Análise de Clusterização Local e Global}
+Para avaliar a influência da estratégia de agrupamento na extração de características texturais, adotamos dois protocolos distintos, ambos baseados no algoritmo K-means:
+\begin{enumerate}
+  \item \textbf{Experimento Local}: aplica-se o K-means de forma independente a cada imagem, ajustando os centróides e o número de clusters às especificidades de cada exemplo. Essa abordagem realça nuances locais, mas gera grupos não padronizados, dificultando comparações diretas entre diferentes imagens.
+  \item \textbf{Experimento Global}: treina-se um único modelo K-means com todos os patches do conjunto de treino, fixando centróides e quantidade de clusters para todo o conjunto. Esse protocolo assegura consistência estatística e comparabilidade entre amostras, embora possa não captar variações pontuais em casos individuais.
+\end{enumerate}
 
 \section{Resultados e Análises}
 
@@ -213,12 +208,12 @@ Nesta seção, apresentamos os resultados obtidos com a aplicação dos filtros 
 
 \subsection{Análise Qualitativa dos Filtros}
 
-A aplicação dos filtros de Gabor e LoG nas imagens de raio-X revelou padrões texturais distintos entre casos normais e casos de pneumonia. Os filtros de Gabor com orientações horizontais (0°) e verticais (90°) mostraram-se particularmente eficazes na detecção de opacidades pulmonares características da pneumonia.
+A aplicação dos filtros de Gabor e LoG nas imagens de raio-X revelou padrões texturais distintos entre casos normais e casos de pneumonia. Os filtros de Gabor com orientações horizontais (0°) e diagonais (135°) mostraram-se particularmente eficazes na detecção de opacidades pulmonares características da pneumonia.
 
 A Figura \ref{fig:filtros_pneumonia} ilustra a aplicação dos filtros em uma imagem de raio-X com pneumonia, mostrando as respostas dos filtros de Gabor em diferentes orientações e escalas, bem como do filtro LoG. Podemos observar que os filtros ressaltam diferentes características texturais da imagem, permitindo uma análise mais detalhada das estruturas presentes.
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\linewidth]{../images/filtros_pneumonia.png}
+  \includegraphics[width=1\linewidth]{../images/global_0_pneu.png}
   \caption{Respostas dos filtros de Gabor e LoG aplicados a uma imagem de raio-X com pneumonia.}
   \label{fig:filtros_pneumonia}
 \end{figure}
@@ -227,7 +222,7 @@ Em contraste, as imagens normais apresentaram respostas mais homogêneas aos fil
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\linewidth]{../images/filtros_normal.png}
+  \includegraphics[width=1\linewidth]{../images/global_1_norm.png}
   \caption{Respostas dos filtros de Gabor e LoG aplicados a uma imagem de raio-X normal.}
   \label{fig:filtros_normal}
 \end{figure}
@@ -239,7 +234,7 @@ A figura \ref{fig:filtros_pneumonia} ilustra a aplicação dos filtros em uma im
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{../images/cluster_distribution.png}
+  \includegraphics[width=0.8\linewidth]{../images/global_avg_dist.png}
   \caption{Distribuição dos clusters obtidos pela segmentação K-means em imagens normais e com pneumonia.}
   \label{fig:clusters}
 \end{figure}
@@ -247,61 +242,57 @@ A figura \ref{fig:filtros_pneumonia} ilustra a aplicação dos filtros em uma im
 Em particular, observamos que:
 
 \begin{itemize}
-  \item Imagens com pneumonia apresentam maior prevalência do cluster 1, associado a regiões com alta resposta aos filtros de Gabor orientados a 45° e 135°, característicos das opacidades irregulares da pneumonia.
-  \item Imagens normais apresentam maior prevalência do cluster 0, associado a regiões com baixa resposta a todos os filtros, indicando áreas pulmonares saudáveis.
+  \item Imagens com pneumonia apresentam maior prevalência do cluster 0, associado a regiões com alta resposta aos filtros de Gabor orientados a 45° e 135°, característicos das opacidades irregulares da pneumonia.
+  \item Imagens normais apresentam maior prevalência do cluster 1, associado a regiões com baixa resposta a todos os filtros, indicando áreas pulmonares saudáveis.
 \end{itemize}
-
-\subsection{Comparação entre Abordagens Multi-escala}
-
-A comparação entre as duas abordagens multi-escala implementadas mostrou que:
-
-\begin{itemize}
-  \item A abordagem de filtros em múltiplas escalas fornece uma representação mais detalhada das texturas locais, sendo mais eficaz na detecção de pequenas anomalias.
-  \item A abordagem de pirâmide de imagens captura melhor as características globais e padrões de larga escala, sendo mais robusta a variações de posicionamento e tamanho das estruturas anatômicas.
-\end{itemize}
-
-// TODO: Revisar texto a seguir
-A análise quantitativa da correlação entre os padrões de cluster e o diagnóstico revelou uma associação significativa entre determinados padrões texturais e a presença de pneumonia. Os clusters associados a regiões com alta resposta aos filtros de Gabor em orientações diagonais (45° e 135°) mostraram-se positivamente correlacionados com o diagnóstico de pneumonia, com uma diferença média de frequência de 0,18 entre casos normais e casos de pneumonia.
 
 \subsection{Avaliação Quantitativa}
-Nesta subseção apresentamos a avaliação quantitativa do classificador baseado em K-Means global, utilizando a matriz de confusão e as principais métricas de desempenho.
+Nesta subseção, comparamos os resultados dos protocolos local e global de clusterização aplicados ao conjunto de teste.
 
-\begin{table}[h]
+\subsubsection{Protocolo Local}
+\noindent
+
+\begin{table}[!h]
   \centering
-  \caption{Matriz de Confusão no conjunto de teste}
-  \label{tab:confusion_matrix}
+  \caption{K-means Local: Matriz de Confusão}
+  \label{tab:conf_local}
   \begin{tabular}{lcc}
     \toprule
-                   & \textbf{Previsto Normal} & \textbf{Previsto Pneumonia} \\
+                   & Previsto Normal & Previsto Pneumonia \\
     \midrule
-    \textbf{Real Normal}     & 74 (VN)   & 9  (FP)  \\
-    \textbf{Real Pneumonia}  & 30 (FN)   & 87 (VP)  \\
+    Real Normal     & 52 (VN)         & 31 (FP)           \\
+    Real Pneumonia  & 37 (FN)         & 80 (VP)           \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-A partir da Tabela~\ref{tab:confusion_matrix}, calculamos:
+A acurácia do protocolo local foi de 66,00\%.
 
-\[
-\text{Acurácia} = \frac{\text{VP} + \text{VN}}{\text{VP} + \text{VN} + \text{FP} + \text{FN}}
-= \frac{87 + 74}{87 + 74 + 9 + 30} = 80{,}50\%
-\]
+\subsubsection{Protocolo Global}
+\noindent
 
-Além da acurácia, outras métricas podem ser obtidas, por exemplo:
-\[
-\text{Precisão} = \frac{\text{VP}}{\text{VP} + \text{FP}}
-= \frac{87}{87 + 9} \approx 90{,}58\%
-\]
-\[
-\text{Sensibilidade (Recall)} = \frac{\text{VP}}{\text{VP} + \text{FN}}
-= \frac{87}{87 + 30} \approx 74{,}35\%
-\]
-\[
-\text{Especificidade} = \frac{\text{VN}}{\text{VN} + \text{FP}}
-= \frac{74}{74 + 9} \approx 89{,}16\%
-\]
+\begin{table}[!h]
+  \centering
+  \caption{K-means Global: Matriz de Confusão}
+  \label{tab:conf_global}
+  \begin{tabular}{lcc}
+    \toprule
+                   & Previsto Normal & Previsto Pneumonia \\
+    \midrule
+    Real Normal     & 74 (VN)         & 9 (FP)            \\
+    Real Pneumonia  & 30 (FN)         & 87 (VP)           \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-Esses resultados mostram que o modelo apresenta boa precisão na detecção de pneumonia, embora a sensibilidade ainda possa ser melhorada em trabalhos futuros.
+
+A acurácia do protocolo global foi de 80,50\%.
+
+\subsubsection{Comparação entre Protocolos}
+
+Em comparação, o experimento global supera o local em 14,5 pontos percentuais na acurácia, evidenciando a vantagem de manter clusters padronizados para todo o conjunto. Além disso, o protocolo local apresentou 31 falsos positivos, enquanto o protocolo global apresentou apenas 9, reforçando a maior capacidade do modelo global em evitar classificações incorretas de imagens normais. 
+
+Na prática, essa diferença implica que, em aplicações clínicas ou de triagem automatizada, o protocolo global tende a gerar menos alarmes falsos, reduzindo o retrabalho e aumentando a confiança dos profissionais de saúde nas decisões auxiliadas pelo modelo.
 
 \subsection{Robustez e Limitações}
 
@@ -334,7 +325,25 @@ A análise dos centroides dos clusters obtidos revela informações valiosas sob
 
 \subsection{Comparação com Métodos de Deep Learning}
 
-Embora métodos baseados em redes neurais convolucionais (CNNs) frequentemente alcancem maior acurácia em tarefas de classificação de imagens médicas, nossa abordagem clássica oferece vantagens complementares:
+\[
+\begin{array}{|l|c|}
+\hline
+\textbf{Métodos} & \textbf{PneumoniaMNIST ACC} \\
+\hline
+\text{Ours (Local)} & 0.660 \\
+\text{Ours (Global)} & 0.805 \\
+\text{ResNet-18 (28)} & 0.854 \\
+\text{ResNet-18 (224)} & 0.864 \\
+\text{ResNet-50 (28)} & 0.854 \\
+\text{ResNet-50 (224)} & 0.884 \\
+\text{auto-sklearn} & 0.855 \\
+\text{AutoKeras} & 0.878 \\
+\text{Google AutoML Vision} & 0.946 \\
+\hline
+\end{array}
+\]
+
+Embora métodos baseados em redes neurais convolucionais (CNNs) e outros métodos de deep learning frequentemente alcancem maior acurácia em tarefas de classificação de imagens médicas, nossa abordagem clássica oferece vantagens complementares:
 
 \begin{itemize}
   \item \textbf{Requisitos computacionais reduzidos:} Os métodos propostos exigem significativamente menos recursos computacionais e dados de treinamento em comparação com abordagens de deep learning.
@@ -355,7 +364,7 @@ Identificamos algumas limitações em nossa abordagem que podem ser abordadas em
 
 Este trabalho investigou o uso de métodos clássicos de processamento de imagem, especificamente filtros de textura e segmentação por clustering, para a classificação de imagens médicas. Utilizando o dataset PneumoniaMNIST, demonstramos que a análise de textura baseada em filtros de Gabor e LoG pode extrair características relevantes para o diagnóstico de pneumonia em raios-X de tórax.
 
-Os resultados revelaram padrões texturais distintos entre casos normais e casos de pneumonia, com diferenças significativas na distribuição de clusters obtidos pela segmentação. A análise multi-escala, implementada tanto por filtros em múltiplas escalas quanto por pirâmide de imagens, permitiu capturar características texturais em diferentes níveis de detalhe.
+Os resultados revelaram padrões texturais distintos entre casos normais e casos de pneumonia, com diferenças significativas na distribuição de clusters obtidos pela segmentação. A análise multi-escala, implementada por filtros em múltiplas escalas de imagens, permitiu capturar características texturais em diferentes níveis de detalhe.
 
 Embora os métodos clássicos possam não alcançar a acurácia de abordagens de deep learning em grandes conjuntos de dados, eles oferecem vantagens importantes em termos de interpretabilidade, requisitos computacionais e desempenho em cenários com dados limitados. A combinação de métodos clássicos e modernos representa um caminho promissor para o desenvolvimento de sistemas de auxílio ao diagnóstico médico que sejam precisos, interpretáveis e confiáveis.
 
