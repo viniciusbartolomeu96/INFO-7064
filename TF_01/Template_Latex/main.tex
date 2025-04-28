@@ -131,6 +131,25 @@ O dataset \textit{PneumoniaMNIST} \cite{medmnistv1_2021} é uma coleção de ima
 
 Este conjunto de dados é particularmente relevante para nossa pesquisa, pois a pneumonia frequentemente se manifesta como opacidades e consolidações nos raios-X de tórax, criando padrões texturais distintos que podem ser capturados por filtros adequados. As imagens utilizadas possuem dimensionalidade de 64x64 pixels para facilitar o processamento, mantendo informações suficientes para a análise de textura.
 
+\subsection{Amostragem Experimental e Pré-processamento}
+Para um experimento controlado, extraímos do conjunto original uma amostragem balanceada:
+
+\begin{table}[h]
+  \centering
+  \caption{Amostragem utilizada nos experimentos}
+  \label{tab:experimental_splits}
+  \resizebox{0.45\textwidth}{!}{%
+    \begin{tabular}{ccc}
+      \toprule
+      \textbf{Conjunto}     & \textbf{Imagens Selecionadas} & \textbf{Proporção por Classe}            \\
+      \midrule
+      Treinamento          & 200                           & \(\approx\) 50\% normal / 50\% pneumonia \\
+      Teste                & 200                           & \(\approx\) 50\% normal / 50\% pneumonia \\
+      \bottomrule
+    \end{tabular}
+  }
+\end{table}
+
 \section{Metodologia}
 
 \subsection{Pré-processamento das Imagens}
@@ -261,25 +280,16 @@ Nesta subseção apresentamos a avaliação quantitativa do classificador basead
   \end{tabular}
 \end{table}
 
-% Relembrar definições brevemente
-Onde:
-\begin{itemize}
-  \item VN = Verdadeiros Negativos (True Negatives)
-  \item FP = Falsos Positivos (False Positives)
-  \item FN = Falsos Negativos (False Negatives)
-  \item VP = Verdadeiros Positivos (True Positives)
-\end{itemize}
-
 A partir da Tabela~\ref{tab:confusion_matrix}, calculamos:
 
 \[
 \text{Acurácia} = \frac{\text{VP} + \text{VN}}{\text{VP} + \text{VN} + \text{FP} + \text{FN}}
-= \frac{87 + 74}{87 + 74 + 9 + 30} \times 100\% = 80{,}50\%
+= \frac{87 + 74}{87 + 74 + 9 + 30} = 80{,}50\%
 \]
 
 Além da acurácia, outras métricas podem ser obtidas, por exemplo:
 \[
-\text{Precisão (Precision)} = \frac{\text{VP}}{\text{VP} + \text{FP}}
+\text{Precisão} = \frac{\text{VP}}{\text{VP} + \text{FP}}
 = \frac{87}{87 + 9} \approx 90{,}58\%
 \]
 \[
@@ -295,7 +305,22 @@ Esses resultados mostram que o modelo apresenta boa precisão na detecção de p
 
 \subsection{Robustez e Limitações}
 
-// TODO: Adicionar resultados de robustez e limitações dos filtros utilizados
+\begin{itemize}
+  \item \textbf{Robustez:}
+    \begin{itemize}
+      \item Extração de textura com filtros de Gabor e LoG mantém estabilidade frente a variações moderadas de parâmetros (escalas, orientações, tamanho de janela).
+      \item Padronização Z-score assegura comparabilidade das características mesmo sob diferentes níveis de brilho e contraste.
+      \item Agrupamento por K-Means global preserva os padrões texturais principais sem demandar reparametrizações frequentes.
+    \end{itemize}
+  \item \textbf{Limitações:}
+    \begin{itemize}
+      \item Número de clusters fixo em 2 restringe a captura de padrões texturais mais finos.
+      \item Treinamento global de K-Means sobre todos os patches exige crescente custo computacional conforme aumenta o volume de dados.
+      \item Validação restrita ao PneumoniaMNIST, sem testes em outras modalidades de imagem médica.
+      \item Desempenho sensível às escolhas de tamanho de janela e orientações dos filtros, exigindo calibração cuidadosa.
+    \end{itemize}
+\end{itemize}
+
 
 \section{Discussão}
 

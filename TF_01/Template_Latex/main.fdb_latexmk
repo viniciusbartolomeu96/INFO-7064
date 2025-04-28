@@ -1,17 +1,17 @@
 # Fdb version 4
-["bibtex main"] 1745802554.43755 "main.aux" "main.bbl" "main" 1745802555.53268 0
+["bibtex main"] 1745846501.66952 "main.aux" "main.bbl" "main" 1745847057.15019 0
   "./ACM-Reference-Format.bst" 1745800814.93282 90332 18dc4e5c9b5c2ddd337e9f97727d04f1 ""
   "./references.bib" 1745800814.9423 797 319e5817e00f1a5c6a9bf4b40bc29db9 ""
-  "main.aux" 1745802555.32683 5580 a203efaf066e4ecf5c5d8e269dd4a9b0 "pdflatex"
+  "main.aux" 1745847056.93747 5992 3c6248d3198ae8b6b0e8a0fd714564b8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1745802554.48923 "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" "main.pdf" "main" 1745802555.53276 0
+["pdflatex"] 1745847056.02768 "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" "main.pdf" "main" 1745847057.15028 0
   "../images/cluster_distribution.png" 1745800814.94293 135198 c916d5f82122a728652af007832be86a ""
   "../images/filtros_normal.png" 1745800814.94454 399088 63dbd8a09d47a7647c844cdbb61a793d ""
   "../images/filtros_pneumonia.png" 1745800814.94597 395739 1019d06bfdf8484accbb40a3f0e72710 ""
-  "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" 1745802553.15037 21392 87823a1caade4ec114399fc07c839be7 ""
+  "/Users/viniciusbartolomeu/Documents/mest/INFO-7064/TF_01/Template_Latex/main.tex" 1745847055.9108 22805 415088b77911e8b556d27c61fda5291d ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1741388039 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1741388039 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1741388039 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
@@ -210,10 +210,10 @@
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346141 1288109d02d1c772df65535881471649 ""
   "acmart.cls" 1745800814.93326 119402 7d3e43c6942ada4777b1e2cee00dd44b ""
-  "main.aux" 1745802555.32683 5580 a203efaf066e4ecf5c5d8e269dd4a9b0 "pdflatex"
-  "main.bbl" 1745802554.4871 2712 3575f116b804f3021141b27675726b14 "bibtex main"
-  "main.out" 1745802555.32744 5548 08910634009b2ac1fcf201a7639cf470 "pdflatex"
-  "main.tex" 1745802553.15037 21392 87823a1caade4ec114399fc07c839be7 ""
+  "main.aux" 1745847056.93747 5992 3c6248d3198ae8b6b0e8a0fd714564b8 "pdflatex"
+  "main.bbl" 1745846501.72234 2712 3575f116b804f3021141b27675726b14 "bibtex main"
+  "main.out" 1745847056.93802 5857 cd662e710bb8d1f7593b0978e75b694c "pdflatex"
+  "main.tex" 1745847055.9108 22805 415088b77911e8b556d27c61fda5291d ""
   (generated)
   "main.aux"
   "main.log"
