@@ -60,6 +60,7 @@ O objetivo é explorar filtros de textura para agrupar regiões semelhantes em u
 
 ---
 
-
+**Notebook da tarefa**:  
+[TF_01/TA1_Tarefa_textura.ipynb](https://github.com/viniciusbartolomeu96/INFO-7064/blob/main/TF_01/TA1_Tarefa_textura.ipynb)
 
 
